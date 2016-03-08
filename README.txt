@@ -12,4 +12,4 @@ Getting Started
 
 - $VENV/bin/pserve development.ini
 - hey Hassan
-
+- solom bymasyy
