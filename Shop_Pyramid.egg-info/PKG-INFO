@@ -19,7 +19,8 @@ Description: Shop_Pyramid README
         - $VENV/bin/initialize_Shop_Pyramid_db development.ini
         
         - $VENV/bin/pserve development.ini
-        
+        - hey Hassan
+        - solom bymasyy
         
         
         0.0

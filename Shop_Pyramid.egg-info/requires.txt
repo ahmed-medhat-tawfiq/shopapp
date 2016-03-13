@@ -6,3 +6,5 @@ SQLAlchemy
 transaction
 zope.sqlalchemy
 waitress
+pyramid_sacrud
+mysql-python

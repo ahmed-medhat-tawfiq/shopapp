@@ -1,6 +1,7 @@
 CHANGES.txt
 MANIFEST.in
 README.txt
+alembic.ini
 development.ini
 production.ini
 setup.cfg
@@ -13,9 +14,17 @@ Shop_Pyramid.egg-info/not-zip-safe
 Shop_Pyramid.egg-info/requires.txt
 Shop_Pyramid.egg-info/top_level.txt
 shop_pyramid/__init__.py
-shop_pyramid/models.py
+shop_pyramid/manage.py
+shop_pyramid/security.py
 shop_pyramid/tests.py
-shop_pyramid/views.py
+shop_pyramid/models/__init__.py
+shop_pyramid/models/code.py
+shop_pyramid/models/feedback.py
+shop_pyramid/models/meta.py
+shop_pyramid/models/month.py
+shop_pyramid/models/phone.py
+shop_pyramid/models/shop.py
+shop_pyramid/models/user.py
 shop_pyramid/scripts/__init__.py
 shop_pyramid/scripts/initializedb.py
 shop_pyramid/static/favicon.ico
@@ -31,3 +40,9 @@ shop_pyramid/static/theme.css
 shop_pyramid/static/theme.min.css
 shop_pyramid/static/transparent.gif
 shop_pyramid/templates/mytemplate.pt
+shop_pyramid/views/__init__.py
+shop_pyramid/views/admin_views.py
+shop_pyramid/views/boss_views.py
+shop_pyramid/views/sales_view.py
+shop_pyramid/views/shop_views.py
+shop_pyramid/views/user_views.py
