@@ -36,6 +36,6 @@ def main(argv=sys.argv):
     DBSession.configure(bind=engine)
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
-    # with transaction.manager:
-    #     user = User(first_name='Ahmed',last_name='Medhat',username='admin',password='admin',email='medhat1471993@gmail.com',country='egypt',groups='x')
-    #     DBSession.add(user)
+    with transaction.manager:
+        user = User(first_name='Ahmed',last_name='Medhat',username='admin',password='admin',email='medhat1471993@gmail.com',country='egypt',groups='x')
+        DBSession.add(user)
