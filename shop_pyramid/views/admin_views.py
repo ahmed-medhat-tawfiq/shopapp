@@ -110,10 +110,16 @@ class SalesViews:
         admin = DBSession.query(User).filter_by(user_id = authenticated_userid(self.request)).first()
         adminid=admin.user_id
         sales = DBSession.query(User).filter_by(admin_id =adminid).filter_by(groups='s').filter_by(block=False)
+        
+        ss = list({"id":d.user_id,"name":d.first_name+" "+d.last_name,
+         "month_purse":(DBSession.query(Month).filter_by(user =d.user_id).
+            filter_by(old=False).first()).m_purse} for d in sales)
+
 
         if admin.block == False:
-            return list({"id":d.user_id,"name":d.first_name+" "+d.last_name} for d in sales)
+            return list({"id":x['id'],"name":x['name'],"month_purse":x['month_purse']} for x in ss)
 
+       
 
     
     @view_config(route_name='block_list',renderer='jsonp',request_method='GET',permission='admin')

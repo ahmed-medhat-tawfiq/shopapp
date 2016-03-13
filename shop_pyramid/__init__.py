@@ -59,7 +59,8 @@ def main(global_config, **settings):
     config.add_route('details', '/sales/details')
     config.add_route('index_cshop', '/index/cshop/{id}')
     config.add_route('view_cshop', '/view/cshop/{id}')
-    
+    config.add_route('index_team', '/index/team')
+
     config.add_route('view_sales', '/view/sales/{id}')
     config.add_route('add_sales', '/add/sales')
     config.add_route('block_sales', '/block/sales')
@@ -70,7 +71,16 @@ def main(global_config, **settings):
     config.add_route('new_month', '/new/month')
     config.add_route('inspect_sales', '/inspect/sales/{id}')
     config.add_route('registration_admin', '/admin/signup')
-    config.add_route('total_details', '/admin/details')
+    config.add_route('total_details', '/total/details')
+
+
+    config.add_route('view_admin', '/view/admin/{id}')
+    config.add_route('block_admin', '/block/admin')
+    config.add_route('activate_admin', '/activate/admin')
+    config.add_route('index_sales', '/index/sales/{id}')
+    config.add_route('index_admins', '/index/admins')
+    config.add_route('sales_details', '/sales/details/{id}')
+    config.add_route('admin_details', '/admin/details/{id}')
 
     config.add_route('codeit', '/codeit')
 

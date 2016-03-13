@@ -17,7 +17,8 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    'pyramid_sacrud'
+    'pyramid_sacrud',
+    'mysql-python'
     ]
 
 setup(name='Shop_Pyramid',

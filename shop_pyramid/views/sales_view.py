@@ -52,6 +52,24 @@ class SalesViews:
 
 
 
+
+    @view_config(route_name='index_team',renderer='jsonp',request_method='GET',permission='sales')
+    def index_team(self):
+        sales = DBSession.query(User).filter_by(user_id = authenticated_userid(self.request)).first()
+        adminid=sales.admin_id
+        team = DBSession.query(User).filter_by(admin_id =adminid).filter_by(groups='s').filter_by(block=False)
+
+        ss = list({"id":d.user_id,"name":d.first_name+" "+d.last_name,"month_purse":(DBSession.query(Month).
+            filter_by(user =d.user_id).filter_by(old=False).first()).m_purse} for d in team)
+
+
+        if sales.block == False:
+            return list({"id":x['id'],"name":x['name'],"month_purse":x['month_purse']} for x in ss)
+
+
+
+
+
     @view_config(route_name='view_customer', renderer='jsonp' ,request_method='GET', permission='sales')
     def view_customer(self):
         user = DBSession.query(User).filter_by(sales_id = authenticated_userid(self.request)).filter_by(

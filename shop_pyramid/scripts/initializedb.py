@@ -1,7 +1,6 @@
 import os
 import sys
 import transaction
-import sqlite3
 from sqlalchemy import engine_from_config
 
 from pyramid.paster import (
@@ -35,8 +34,8 @@ def main(argv=sys.argv):
     settings = get_appsettings(config_uri, options=options)
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
-    # Base.metadata.drop_all(engine)
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
-    # with transaction.manager:
-    #     user = User(first_name='Ahmed',last_name='Medhat',username='admin',password='admin',email='medhat1471993@gmail.com',country='egypt',groups='x')
-    #     DBSession.add(user)
+    with transaction.manager:
+        user = User(first_name='Ahmed',last_name='Medhat',username='admin',password='admin',email='medhat1471993@gmail.com',country='egypt',groups='x')
+        DBSession.add(user)

@@ -22,7 +22,8 @@ class RootFactory(object):
                 (Allow, Authenticated, 'access'),
                 (Allow,'o','owner'),
                 (Allow,'s','sales'),
-                (Allow,'a','admin'),
+                (Allow,'a',['admin','sales']),
+                (Allow,'b',['boss','admin','sales']),
                 (Allow, Everyone, ['pyramid_sacrud_home','pyramid_sacrud_list','pyramid_sacrud_update',
                     'pyramid_sacrud_create','pyramid_sacrud_mass_delete'])]
                 

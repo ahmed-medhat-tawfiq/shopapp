@@ -16,4 +16,4 @@ def groupfinder(userid, request):
     else:
         groups = user.groups
     return groups
-    	
+    

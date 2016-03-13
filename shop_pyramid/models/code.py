@@ -12,10 +12,7 @@ from sqlalchemy import (
     Boolean,
     Unicode
     )
-from sqlalchemy.orm import (
-    relation,
-    joinedload,
-    )
+
 class Code(Base):
     __tablename__ = 'code'
     code_id = Column(Integer, primary_key=True)
