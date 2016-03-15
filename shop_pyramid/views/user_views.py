@@ -40,7 +40,7 @@ class UserViews:
         session.add(user)
         transaction.commit()
 
-        return {"successful":True}
+        return {"message":"success"}
   
 
     @view_config(route_name='login', renderer='jsonp',request_method='POST')
