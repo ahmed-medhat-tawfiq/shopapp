@@ -29,7 +29,7 @@ def main(global_config, **settings):
     config.set_authorization_policy(authz_policy)
 
     # add sacrud and project models
-    config.include('pyramid_sacrud', route_prefix = 'admin')
+    config.include('pyramid_sacrud', route_prefix = 'CPanel')
     settings = config.registry.settings
     settings['pyramid_sacrud.models'] = (('Users', [User , Month]),('Shops', [Shop , Phone]),
         ('Code', [Code]))
