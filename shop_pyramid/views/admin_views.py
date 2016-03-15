@@ -54,6 +54,8 @@ class SalesViews:
     def add_sales(self):
         admin = DBSession.query(User).filter_by(user_id = authenticated_userid(self.request)).first()
         sales = DBSession.query(User).filter_by(user_id =self.request.json_body.get('id')).first()
+        adminid=admin.user_id
+        exist_month = DBSession.query(Month).filter_by(user= adminid).filter_by(old=False).first()
         session = DBSession()
         if admin.block == False:
             if sales:
@@ -62,6 +64,9 @@ class SalesViews:
                 userid= sales.user_id
                 month = Month(user=userid)
                 session.add(month)
+                if exist_month is None:
+                    amonth = Month(user=adminid)
+                    session.add(amonth)
                 transaction.commit()
                 return {"message":"success"}
             return {"message":"wrong"}

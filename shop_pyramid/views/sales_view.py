@@ -117,6 +117,7 @@ class SalesViews:
             p=0
             v=0
             t="no"
+            s=0
         elif typ == 1:
             p=1
             v=0
@@ -169,20 +170,24 @@ class SalesViews:
                 amonth = DBSession.query(Month).filter_by(user=sales.admin_id).filter_by(old=False).first()
 
                 if month and amonth:
-                    if month.t_customer==0 or (month.t_customer>0 and month.t_sdate.strftime("%d") !=  datetime.datetime.now().strftime("%d") and  (int(datetime.datetime.now().strftime("%H"))) > 4):
+                    if month.t_customer==0 or (month.t_customer>0 and month.t_sdate.strftime("%d") !=  datetime.datetime.now().strftime("%d") and  (int(datetime.datetime.now().strftime("%H"))) > 2):
                         time_start = datetime.datetime.now()
                         time_end = datetime.datetime.now()+datetime.timedelta(hours=12)
                         month.t_sdate=datetime.datetime.now()
                         month.t_edate=datetime.datetime.now()+datetime.timedelta(hours=12)
-                        month.m_time+=month.t_time
+                        xm=month.t_time
+                        month.m_time+=xm
                         month.t_customer=0
                         month.t_pcustomer=0
                         month.t_vcustomer=0
                         month.t_time=0
-                        
-                        amonth.t_customer=0
-                        amonth.t_pcustomer=0
-                        amonth.t_vcustomer=0
+                        month.t_purse=0
+
+                        if  amonth.t_customer==0 or (month.t_customer>0 and month.t_sdate.strftime("%d") !=  datetime.datetime.now().strftime("%d") and  (int(datetime.datetime.now().strftime("%H"))) > 2):
+                            amonth.t_customer=0
+                            amonth.t_pcustomer=0
+                            amonth.t_vcustomer=0
+                            amonth.t_purse=0
                     else:
                         time_start= month.t_sdate
                         time_end= month.t_edate

@@ -23,22 +23,6 @@ class SalesViews:
         self.request = request
 
 
-    # @view_config(route_name='registration_admin',renderer='jsonp',request_method='POST')
-    # def signup_admin(self):
-    #     session = DBSession()
-    #     user = User(
-    #             first_name=self.request.json_body.get('first_name'),
-    #             last_name=self.request.json_body.get('last_name'),
-    #             # username=self.request.json_body.get('username'),
-    #             password=self.request.json_body.get('password'),
-    #             email=self.request.json_body.get('email'),
-    #             phone1=self.request.json_body.get('phone'),
-    #             groups='b',
-    #             block=False,
-    #         )
-    #     session.add(user)
-    #     transaction.commit()
-    #     return {"message":"success"}
 
 
     @view_config(route_name='view_admin', renderer='jsonp' ,request_method='GET', permission='boss')
@@ -101,16 +85,18 @@ class SalesViews:
 
     @view_config(route_name='index_sales',renderer='jsonp',request_method='GET',permission='boss')
     def index_sales(self):
-        admin = DBSession.query(User).filter_by(user_id = int(self.request.matchdict.get('id'))).first()
-        adminid=admin.user_id
-        sales = DBSession.query(User).filter_by(admin_id =adminid).filter_by(groups='s')
+        
+        team = DBSession.query(User).filter_by(admin_id =int(self.request.matchdict.get('id'))).filter_by(
+            groups='s')
         boss = DBSession.query(User).filter_by(user_id = authenticated_userid(self.request)).first()
+
+        ss = list({"id":d.user_id,"name":d.first_name+" "+d.last_name,"month_purse":(DBSession.query(Month).
+            filter_by(user =d.user_id).filter_by(old=False).first()).m_purse} for d in team)
+
         if boss.block == False:
-            return list({"name":d.first_name+" "+d.last_name,"month_purse":d.m_purse,"block":d.block} for d in sales)
-
-    
-    
-
+            return list({"id":x['id'],"name":x['name'],"month_purse":x['month_purse']} for x in ss)
+        
+        
     
     @view_config(route_name='sales_details',renderer='jsonp',request_method='GET',permission='boss')
     def sales_details(self):
