@@ -6,6 +6,7 @@ from sqlalchemy import (
     VARCHAR,
     Integer,
     Numeric,
+    Float,
     TEXT,
     ForeignKey,
     Date,
@@ -20,8 +21,8 @@ class Shop(Base):
     description = Column(VARCHAR(255))
     ads = Column(TEXT)
     rank = Column(Integer)
-    latitude = Column(Numeric, nullable=False)
-    longitude = Column(Numeric, nullable=False)
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
     types=Column(VARCHAR(255))
     start_date = Column(Date)
     end_date = Column(Date)
